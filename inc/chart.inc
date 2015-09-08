@@ -11,16 +11,36 @@ $dhs = new dhstream($resj->feedid, $resj->streamid, $resj->feedtype, $resj->key)
 //$dhs->useProxy("wwwcache.open.ac.uk:80");
 $today = new DateTime();
 if (isset($resj->limit) && strcmp($resj->limit, "")!==0){
-  $l = $resj->limit;
+    $l = $resj->limit;
 } else {
-  $l = 100;
+    $l = 100;
 }
 if (isset($resj->startdate) && strcmp($resj->startdate, "")!==0) {
-   $sd= $resj->startdate;
-} else {
-   $yesterday=new Datetime();
-   $yesterday->setTimeStamp(time()-(60*60*24));
-   $sd= $yesterday->format('Y-m-d');
+    $sd= $resj->startdate;
+} else if (isset($resj->relativestart) && strcmp($resj->relativestart, "")!==0 &&
+	   strcmp($resj->relativestart, "none")!==0) {
+//    echo "relative start selected :: ".$resj->relativestart;
+    if (strcmp($resj->relativestart, "week")===0){
+       	$yesterday=new Datetime();
+        $yesterday->setTimeStamp(time()-(60*60*24*7));
+   	$sd=$yesterday->format('Y-m-d');
+    } else if (strcmp($resj->relativestart, "month")===0){
+       	$yesterday=new Datetime();
+        $yesterday->setTimeStamp(time()-(60*60*24*30));
+   	$sd=$yesterday->format('Y-m-d');
+    } else if (strcmp($resj->relativestart, "year")===0){
+       	$yesterday=new Datetime();
+        $yesterday->setTimeStamp(time()-(60*60*24*360));
+   	$sd=$yesterday->format('Y-m-d');
+    } else {
+       	$yesterday=new Datetime();
+        $yesterday->setTimeStamp(time()-(60*60*24));
+   	$sd=$yesterday->format('Y-m-d');
+    }	
+} else {	
+    $yesterday=new Datetime();
+    $yesterday->setTimeStamp(time()-(60*60*24));
+    $sd= $yesterday->format('Y-m-d');
 }
 if (isset($resj->starttime) && strcmp($resj->starttime, "")!==0) {
    $sd.="T".$resj->starttime.$today->format("O");

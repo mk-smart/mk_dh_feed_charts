@@ -14,10 +14,13 @@
 	   <strong>From:</strong><br/>
   	   <input type="date" name="startdate" id="startdate" placeholder="Start date (default: yesterday)"/><br/>
   	   <input type="time" name="starttime" id="starttime" placeholder="Start time (default: 24 hours ago1)"/><br/>
+	   <input style="width: 40px; margin-left: 0px; padding-left: 0px;" type="radio" name="relativestart" value="day">last day</input>
+	   <input style="width: 40px" type="radio" name="relativestart" value="week">last week</input>
+	   <input style="width: 40px" type="radio" name="relativestart" value="month">last month</input>
+	   <input style="width: 40px" type="radio" name="relativestart" value="year">last year</input><br/>
 	   <strong>To:</strong><br/>
   	   <input type="date" name="enddate" id="enddate" placeholder="End date (default: today)"/><br/>
-  	   <input type="time" name="endtime" id="endtime" placeholder="End time (default: now)"/><br/>
-
+  	   <input type="time" name="endtime" id="endtime" placeholder="End time (default: now)"/><br/>	   
 	   <br/>
 	   <input type="text" name="title" id="title" placeholder="Chart title (default: none)"/><br/>
 	   <input type="text" name="xlabel" id="xlabel" placeholder="Title of X axis (default: Timeline)"/><br/>
