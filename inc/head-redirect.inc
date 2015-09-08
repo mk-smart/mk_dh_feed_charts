@@ -4,7 +4,8 @@
 
 $idstring = $_POST['key'].$_POST['feedid'].$_POST['streamid'].$_POST['limit'].$_POST['title'].
 	    $_POST['xlabel'].$_POST['ylabel'].$_POST['startdate'].$_POST['starttime'].
-	    $_POST['enddate'].$_POST['endtime'].$_POST['color'].$_POST['bgcolor'].$_POST['tgcolor'];
+	    $_POST['enddate'].$_POST['endtime'].$_POST['color'].$_POST['bgcolor'].
+	    $_POST['tgcolor'].$_POST['relativestart'];
 	    $idstring=md5($idstring);
 echo $_POST['color'];
 include('config.php');
@@ -25,6 +26,7 @@ if (strpos($ress, "missing")!==false){
    '", "color":"'.$_POST['color'].
    '", "bgcolor":"'.$_POST['bgcolor'].
    '", "tgcolor":"'.$_POST['tgcolor'].
+   '", "relativestart":"'.$_POST['relativestart'].
    '"}';
    echo "sending ".$jsons."</br>";
    $ress=$cdb->send("PUT", "/$dbname/".$idstring, $jsons);
